@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: mumuk-postgres
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=${DB_NAME:-mumuk}
+      - POSTGRES_USER=${DB_USERNAME:-mumuk}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - mumuk-postgres-data:/var/lib/postgresql/data
+    networks:
+      - mumuk-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-mumuk}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  mumuk-postgres-data:
+
+networks:
+  mumuk-network:
+    driver: bridge
