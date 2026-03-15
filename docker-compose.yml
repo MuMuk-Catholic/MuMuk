@@ -1,4 +1,22 @@
 services:
+  backend:
+    image: mumuk-backend:latest
+    container_name: mumuk-backend
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    networks:
+      - mumuk-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
   postgres:
     image: postgres:16
     container_name: mumuk-postgres
