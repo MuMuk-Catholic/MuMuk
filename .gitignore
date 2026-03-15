@@ -1,0 +1,70 @@
+# Java build
+/build/
+!/src/main/**/static/
+/out/
+target/
+
+
+# Gradle Wrapper logs
+gradle-app.setting
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code (if used)
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.*
+
+# Test reports
+/test-output/
+build/reports/
+jacoco.exec
+
+# Local DB or SQLite
+*.db
+*.h2.db
+
+# Temporary files
+*.swp
+*.tmp
+*.bak
+
+# Dependency cache
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+*.war
+*.ear
+
+# npm/yarn (if using frontend)
+node_modules/
+dist/
+
+# GitHub linguist ignore
+*.html linguist-vendored
+/static/** linguist-vendored
+/build/** linguist-vendored
+
+.env
+
+
+nginx/nginx.conf
+./gradle
+./bin
+
+/loki/
+src/main/resources/fcm/firebase-sdk.json
