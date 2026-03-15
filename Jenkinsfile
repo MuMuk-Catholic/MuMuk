@@ -18,5 +18,16 @@ pipeline {
                 sh 'docker build -t mumuk-backend:latest .'
             }
         }
+
+        stage('Sync Config') {
+            steps {
+                sh """
+                    cp docker-compose.yml ${DEPLOY_DIR}/
+                    cp -r prometheus/ ${DEPLOY_DIR}/
+                    cp -r promtail/ ${DEPLOY_DIR}/
+                    cp -r grafana/ ${DEPLOY_DIR}/
+                """
+            }
+        }
     }
 }
