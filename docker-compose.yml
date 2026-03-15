@@ -55,6 +55,19 @@ services:
       start_period: 30s
     restart: unless-stopped
 
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    container_name: mumuk-prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "127.0.0.1:9091:9090"
+    networks:
+      - mumuk-network
+    restart: unless-stopped
+
 volumes:
   mumuk-postgres-data:
 
