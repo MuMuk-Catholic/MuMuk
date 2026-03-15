@@ -67,6 +67,23 @@ services:
       - mumuk-network
     restart: unless-stopped
 
+  grafana:
+    image: grafana/grafana:12.1.0
+    container_name: mumuk-grafana
+    ports:
+      - "127.0.0.1:3001:3000"
+    volumes:
+      - mumuk-grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
+      - GF_SERVER_ROOT_URL=https://wonryeol.asuscomm.com/grafana/
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+    networks:
+      - mumuk-network
+    restart: unless-stopped
+
   promtail:
     image: grafana/promtail:2.9.2
     container_name: mumuk-promtail
@@ -97,6 +114,7 @@ services:
 volumes:
   mumuk-postgres-data:
   mumuk-loki-data:
+  mumuk-grafana-data:
 
 networks:
   mumuk-network:
