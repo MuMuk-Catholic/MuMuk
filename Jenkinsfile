@@ -29,5 +29,20 @@ pipeline {
                 """
             }
         }
+
+        stage('Deploy') {
+            steps {
+                sh "docker compose -f ${DEPLOY_DIR}/docker-compose.yml up -d --force-recreate --no-deps backend"
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deploy successful!'
+        }
+        failure {
+            echo 'Build or deploy failed.'
+        }
     }
 }
