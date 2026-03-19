@@ -1,5 +1,15 @@
 package com.mumuk.domain.healthManagement.entity;
 
 public enum AllergyType {
-    // TODO: AllergyType 열거형 정의
+
+    SHELLFISH,
+    NUTS,
+    DAIRY,
+    WHEAT,
+    EGG,
+    FISH,
+    SOY,
+    NONE;
+
+
 }

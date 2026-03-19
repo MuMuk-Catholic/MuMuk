@@ -1,5 +1,11 @@
 package com.mumuk.domain.healthManagement.entity;
 
 public enum HealthGoalType {
-    // TODO: HealthGoalType 열거형 정의
+    WEIGHT_LOSS,
+    MUSCLE_GAIN,
+    SUGAR_REDUCTION,
+    BLOOD_PRESSURE,
+    CHOLESTEROL,
+    DIGESTION,
+    NONE;
 }

@@ -64,8 +64,8 @@ dist/
 
 
 nginx/nginx.conf
-./gradle
-./bin
+.gradle/
+bin/
 
 /loki/
 src/main/resources/fcm/firebase-sdk.json
