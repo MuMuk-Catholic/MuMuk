@@ -1,5 +1,6 @@
 package com.mumuk.domain.notification.entity;
 
 public enum MessageStatus {
-    // TODO: 메시지 상태 열거형
+    PENDING,SENT,FAILED,REJECTED;
+    //보류, 전송됨, 실패, 거부 4가지 상태
 }
