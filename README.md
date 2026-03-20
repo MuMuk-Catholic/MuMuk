@@ -8,18 +8,46 @@
 
 ## 🏗️ System Architecture
 
-```
-[GitHub Push to main]
-        ↓ (Webhook)
-[Jenkins - 홈서버 자체 호스팅]
-  → Gradle Build → Docker Build → Auto Deploy
-        ↓
-[홈서버 (Ubuntu 24.04)]
-  ┌─────────────────────────────────────────┐
-  │  Nginx (SSL, Reverse Proxy)             │
-  │  Spring Boot API  ← PostgreSQL, Redis   │
-  │  Prometheus + Grafana + Loki (모니터링)  │
-  └─────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph GitHub
+        A[GitHub Push to main] -->|Webhook| B[GitHub Actions - CI]
+        A -->|Webhook| C
+    end
+
+    subgraph HomeServer["홈서버 (Ubuntu 24.04)"]
+        C[Jenkins] -->|Gradle Build| D[Docker Build]
+        D -->|Auto Deploy| E
+
+        subgraph Docker["Docker Containers"]
+            E[Spring Boot API\n:8080]
+            F[(PostgreSQL 16\n:5433)]
+            G[(Redis 7\n:6380)]
+            E --- F
+            E --- G
+        end
+
+        subgraph Monitoring["Monitoring Stack"]
+            H[Prometheus\n:9091]
+            I[Grafana\n:3002]
+            J[Loki + Promtail]
+            H --> I
+            J --> I
+        end
+
+        K[Nginx\nSSL + Reverse Proxy] --> E
+        K --> I
+        K --> C
+        H -.->|메트릭 수집| E
+        J -.->|로그 수집| E
+    end
+
+    L((Client)) -->|HTTPS| K
+
+    style GitHub fill:#24292e,color:#fff
+    style HomeServer fill:#f0f4f8,color:#333
+    style Docker fill:#e3f2fd,color:#333
+    style Monitoring fill:#fff3e0,color:#333
 ```
 
 - **홈서버 직접 구축**: 클라우드(AWS) 대신 개인 홈서버에 전체 인프라를 Docker 기반으로 구성
