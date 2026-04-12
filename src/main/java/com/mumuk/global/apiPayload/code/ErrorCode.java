@@ -27,8 +27,18 @@ public enum ErrorCode implements BaseCode {
     JWT_TOKEN_NOT_FOUND(HttpStatus.UNAUTHORIZED, "JWT_401", "JWT 토큰을 찾을 수 없습니다."),
 
 
-    ;
 
+    LOGIN_ID_ALREADY_EXISTS(HttpStatus.CONFLICT, "AUTH_409", "이미 사용 중인 아이디 입니다."),
+    EMAIL_ALREADY_EXISTS(HttpStatus.CONFLICT, "AUTH_409", "이미 사용 중인 이메일 입니다."),
+    ID_CONFIRM_MISMATCH(HttpStatus.BAD_REQUEST, "AUTH_400_ID_MISMATCH", "아이디가 일치하지 않습니다."),
+    PHONE_NUMBER_ALREADY_EXISTS(HttpStatus.CONFLICT, "AUTH_409", "이미 가입된 휴대폰 번호 입니다."),
+    PASSWORD_CONFIRM_MISMATCH(HttpStatus.BAD_REQUEST, "AUTH_400_PW_MISMATCH", "비밀번호가 일치하지 않습니다."),
+    INVALID_LOGIN_ID_FORMAT(HttpStatus.BAD_REQUEST, "AUTH_400_LOGIN_ID", "아이디 형식이 올바르지 않습니다."),
+    INVALID_PASSWORD_FORMAT(HttpStatus.BAD_REQUEST, "AUTH_400_PW", "비밀번호는 8-15자이며 영문, 숫자, 특수문자를 포함해야 합니다."),
+    INVALID_CURRENT_PASSWORD_FORMAT(HttpStatus.BAD_REQUEST, "AUTH_400_PW", "로그인 한 비밀번호랑 일치하지 않습니다."),
+    INVALID_NICKNAME_FORMAT(HttpStatus.BAD_REQUEST, "AUTH_400_NICKNAME", "닉네임은 10자 이내만 가능합니다."),
+
+    ;
 
 
     private final HttpStatus status;
