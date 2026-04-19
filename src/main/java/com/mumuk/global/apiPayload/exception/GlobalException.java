@@ -1,5 +1,31 @@
 package com.mumuk.global.apiPayload.exception;
 
+import com.mumuk.global.apiPayload.code.ErrorCode;
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
+/**
+ *  시스템 전역 예외 발생기 (설정 오류)
+ */
+@Getter
 public class GlobalException extends RuntimeException {
-    // TODO: 글로벌 예외 처리
+
+    private final ErrorCode code;
+
+    public GlobalException(ErrorCode code) {
+        super(code.getMessage());
+        this.code = code;
+    }
+
+    public ErrorCode getCode() {
+        return code;
+    }
+
+    public HttpStatus getStatus() {
+        return this.code.getStatus();
+    }
+
+    public ErrorCode getReason() {
+        return this.code;
+    }
 }
