@@ -38,6 +38,12 @@ public enum ErrorCode implements BaseCode {
     INVALID_CURRENT_PASSWORD_FORMAT(HttpStatus.BAD_REQUEST, "AUTH_400_PW", "로그인 한 비밀번호랑 일치하지 않습니다."),
     INVALID_NICKNAME_FORMAT(HttpStatus.BAD_REQUEST, "AUTH_400_NICKNAME", "닉네임은 10자 이내만 가능합니다."),
 
+    ////Ingredient Error
+    INVALID_EXPIREDATE(HttpStatus.BAD_REQUEST, "INGREDIENT_400", "유통기한이 유효하지 않습니다."),
+    INGREDIENT_NOT_FOUND(HttpStatus.NOT_FOUND, "INGREDIENT_404", "해당 재료가 존재하지 않습니다."),
+    USER_NOT_EQUAL(HttpStatus.BAD_REQUEST, "INGREDIENT_403", "해당 사용자의 재료가 아닙니다."),
+    INVALID_D_DAY_SETTING(HttpStatus.BAD_REQUEST, "INGREDIENT_400", "올바른 알림설정이 아닙니다."),
+    INVALID_QUANTITY(HttpStatus.BAD_REQUEST, "INGREDIENT_400", "올바른 수량이 아닙니다.")
     ;
 
 
