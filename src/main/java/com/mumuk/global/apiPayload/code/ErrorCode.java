@@ -43,7 +43,7 @@ public enum ErrorCode implements BaseCode {
     INGREDIENT_NOT_FOUND(HttpStatus.NOT_FOUND, "INGREDIENT_404", "해당 재료가 존재하지 않습니다."),
     USER_NOT_EQUAL(HttpStatus.BAD_REQUEST, "INGREDIENT_403", "해당 사용자의 재료가 아닙니다."),
     INVALID_D_DAY_SETTING(HttpStatus.BAD_REQUEST, "INGREDIENT_400", "올바른 알림설정이 아닙니다."),
-    INVALID_QUANTITY(HttpStatus.BAD_REQUEST, "INGREDIENT_400", "올바른 수량이 아닙니다.")
+    INVALID_QUANTITY(HttpStatus.BAD_REQUEST, "INGREDIENT_400", "올바른 수량이 아닙니다."),
     ;
 
 
