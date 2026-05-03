@@ -34,7 +34,7 @@ public class UserController {
         return Response.ok(userService.profileInfo(userId));
     }
 
-    @Operation(summary = "프로필 수정", description = "사용자의 프로필 정보를 수정합니다.")
+    @Operation(summary ="프로필 수정", description = "사용자의 프로필 정보를 수정합니다.")
     @PatchMapping("/profile")
     public Response<String> editProfile(@AuthUser Long userId, @Valid @RequestBody UserRequest.EditProfileReq req) {
         userService.editProfile(userId, req);
