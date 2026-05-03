@@ -1,12 +1,8 @@
 package com.mumuk.domain.user.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.mumuk.domain.user.entity.UserRecipe;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-
-import java.util.List;
 
 public class UserResponse {
 
@@ -19,5 +15,15 @@ public class UserResponse {
         private String profileImage;
         private String accessToken;
         private String refreshToken;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class ProfileInfoDTO {
+        private String name;
+        private String nickName;
+        private String profileImage;
+        private String statusMessage;
     }
 }
