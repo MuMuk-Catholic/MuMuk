@@ -6,5 +6,6 @@ import com.mumuk.domain.user.dto.response.UserResponse;
 
 public interface UserService {
     UserResponse.ProfileInfoDTO profileInfo(Long userId);
-    void editProfile(Long userId, UserRequest.EditProfileReq request);
+    void editProfile(Long UserId, UserRequest.EditProfileReq request);
+    void agreeToHealthData(Long userId);
 }
