@@ -1,5 +1,7 @@
 package com.mumuk.domain.user.service;
 
+
+
 import com.mumuk.domain.user.converter.MypageConverter;
 import com.mumuk.domain.user.dto.request.UserRequest;
 import com.mumuk.domain.user.dto.response.UserResponse;
@@ -7,6 +9,7 @@ import com.mumuk.domain.user.entity.User;
 import com.mumuk.domain.user.repository.UserRepository;
 import com.mumuk.global.apiPayload.code.ErrorCode;
 import com.mumuk.global.security.exception.AuthException;
+import com.mumuk.global.security.jwt.JwtTokenProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +20,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
-    public UserServiceImpl(UserRepository userRepository) {
+
+    public UserServiceImpl(UserRepository userRepository, JwtTokenProvider jwtTokenProvider) {
         this.userRepository = userRepository;
+        this.jwtTokenProvider = jwtTokenProvider;
+
     }
 
     @Override
@@ -42,5 +49,14 @@ public class UserServiceImpl implements UserService {
                 request.getProfileImage(),
                 request.getStatusMessage()
         );
+    }
+
+    @Override
+    @Transactional
+    public void agreeToHealthData(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new AuthException(ErrorCode.USER_NOT_FOUND));
+
+        user.agreeToHealthData();
     }
 }
